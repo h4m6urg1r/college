@@ -3,16 +3,18 @@
 import java.awt.*;
 import java.applet.*;
 import java.awt.event.*;
-/* <applet code=prog20 width=150 height=150></applet>
+/* <applet code=Q20 width=150 height=150>
 <param name=N1 value=5>
+</applet>
 */
-public class prog20 extends Applet implements ItemListener, ActionListener {
+public class Q20 extends Applet implements ItemListener, ActionListener {
     String s1;
-    Int n1;
+    int n1;
     TextField tf1,tf2;
     Button result;
     Checkbox cb1,cb2;
     CheckboxGroup cbg;
+    double monthlyPayment;
     public void init() {
         Label f=new Label("ENTER AMOUNT OF LOAN", Label.RIGHT);
         Label s=new Label("ENTER INTEREST RATE", Label.RIGHT);
@@ -38,9 +40,33 @@ public class prog20 extends Applet implements ItemListener, ActionListener {
         }
     }
     public void itemStateChanged(ItemEvent ie) { //WRITE PROGRAM HERE
+        /*
+        if (cb1.getState()) {
+            tf2.setLabel("ENTER INTEREST RATE (PER MONTH)");
+        } else {
+            tf2.setLabel("ENTER INTEREST RATE (PER YEAR)");
+        }
+        */
     }
     public void actionPerformed(ActionEvent ae) { //WRITE PROGRAM HERE
+        double loanAmount = Double.parseDouble(tf1.getText());
+        double interestRate;
+        if (cb1.getState()) {
+            interestRate = Double.parseDouble(tf2.getText()) / 100; // Assuming percentage rate per month
+        } else {
+            interestRate = Double.parseDouble(tf2.getText()) / 100 / 12; // Assuming percentage rate per year, divided by 12 for monthly rate
+        }
+        int numberOfMonths = n1;
+
+        // Calculate the loan payment amount
+        double numerator = interestRate * Math.pow(1 + interestRate, numberOfMonths);
+        double denominator = Math.pow(1 + interestRate, numberOfMonths) - 1;
+        monthlyPayment = loanAmount * (numerator / denominator);
+
+        // Display the loan payment amount
+        repaint();
     }
     public void paint(Graphics g) { //WRITE PROGRAM HERE
+        g.drawString("Loan Payment Amount:" + Double.toString(monthlyPayment), 100, 100);
     }
 }

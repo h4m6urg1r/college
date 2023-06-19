@@ -9,7 +9,7 @@
 import java.awt.*;
 import java.applet.*;
 import java.awt.event.*;
-/* <applet code=Q19 width=600 height=600></applet> */
+/* <applet code=Q19 width=400 height=100></applet> */
 public class Q19 extends Applet implements ActionListener {
     String ans="";
     Button sub;

@@ -19,13 +19,13 @@ public class Q23 extends Applet implements KeyListener {
         if(code==KeyEvent.VK_LEFT) {
             x-=20;
         }
-        if(code==KeyEvent.VK_RIGHT) {
+        else if(code==KeyEvent.VK_RIGHT) {
             x+=20;
         }
-        if(code==KeyEvent.VK_UP) {
+        else if(code==KeyEvent.VK_UP) {
             y-=20;
         }
-        if(code==KeyEvent.VK_DOWN) {
+        else if(code==KeyEvent.VK_DOWN) {
             y+=20;
         }
         Graphics g=getGraphics();
